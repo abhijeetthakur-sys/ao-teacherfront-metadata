@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Artium Originals — Release Information</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F9F6F1;
+  --parchment: #F0EBE1;
+  --ink: #1C1612;
+  --ink2: #4A3F35;
+  --ink3: #9A8A7A;
+  --pink: #D94F6B;
+  --pink-light: #FDF0F3;
+  --gold: #B8860B;
+  --border: #DDD5C5;
+  --white: #FFFFFF;
+  --shadow: 0 2px 20px rgba(28,22,18,0.06);
+  --radius: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 0 var(--border);
+}
+.header-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-logos { display: flex; align-items: center; gap: 20px; }
+.header-logos img { height: 28px; width: auto; }
+.header-logos .sep { width: 1px; height: 20px; background: var(--border); }
+.header-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 3px;
+  background: var(--parchment);
+  position: relative;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pink), var(--gold));
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+/* ── HERO ── */
+.hero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 24px 40px;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 14px;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.hero h1 em { font-style: italic; color: var(--pink); }
+.hero p {
+  font-size: 15px;
+  color: var(--ink2);
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+/* ── FORM WRAPPER ── */
+.form-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── SECTION CARD ── */
+.section-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.section-card.visible { opacity: 1; transform: none; }
+
+.section-head {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--parchment);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.section-num {
+  width: 32px; height: 32px;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+  flex-shrink: 0; margin-top: 2px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.section-sub {
+  font-size: 12px;
+  color: var(--ink3);
+  margin-top: 2px;
+}
+
+.section-body { padding: 24px 28px; }
+
+/* ── FIELDS ── */
+.field { margin-bottom: 20px; }
+.field:last-child { margin-bottom: 0; }
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  margin-bottom: 7px;
+}
+.field label .opt {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink3);
+  font-size: 11px;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  -webkit-appearance: none;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--pink);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(217,79,107,0.08);
+}
+.field textarea { resize: vertical; min-height: 90px; }
+.field select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239A8A7A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+@media(max-width:580px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+/* ── HINT ── */
+.hint {
+  font-size: 11px;
+  color: var(--ink3);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* ── NOTE BOX ── */
+.note-box {
+  background: var(--pink-light);
+  border-left: 3px solid var(--pink);
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--ink2);
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+
+/* ── REPEAT BLOCK ── */
+.repeat-block {
+  background: var(--parchment);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.repeat-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 14px;
+}
+.remove-btn {
+  position: absolute;
+  top: 14px; right: 16px;
+  background: none; border: none;
+  color: var(--ink3); font-size: 18px;
+  cursor: pointer; padding: 0; line-height: 1;
+  transition: color 0.15s;
+}
+.remove-btn:hover { color: var(--pink); }
+
+/* ── ADD BUTTON ── */
+.add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 10px;
+  background: none;
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--ink3);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: all 0.15s;
+}
+.add-btn:hover { border-color: var(--pink); color: var(--pink); background: var(--pink-light); }
+
+/* ── CHAR COUNT ── */
+.char-count {
+  font-size: 11px;
+  color: var(--ink3);
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--parchment); margin: 20px 0; }
+
+/* ── SUBMIT ── */
+.submit-zone {
+  text-align: center;
+  padding: 32px 0 0;
+}
+.submit-btn {
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  padding: 16px 56px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(28,22,18,0.2);
+}
+.submit-btn:hover { background: #2E241C; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(28,22,18,0.25); }
+.submit-btn:disabled { background: var(--ink3); cursor: wait; transform: none; box-shadow: none; }
+.submit-note { font-size: 12px; color: var(--ink3); margin-top: 12px; }
+
+/* ── SUCCESS ── */
+.success-screen {
+  display: none;
+  max-width: 520px;
+  margin: 80px auto;
+  padding: 0 24px;
+  text-align: center;
+}
+.success-screen.show { display: block; }
+.success-ornament {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  color: var(--pink);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.success-screen h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.success-screen p { font-size: 14px; color: var(--ink2); line-height: 1.8; }
+.success-screen .another-btn {
+  margin-top: 28px;
+  display: inline-block;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 28px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  color: var(--ink2);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.success-screen .another-btn:hover { border-color: var(--ink); color: var(--ink); }
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+  margin-top: 40px;
+}
+.footer p { font-size: 11px; color: var(--ink3); letter-spacing: 0.08em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-logos">
+      <img src="https://res.cloudinary.com/dd7s6bb58/image/upload/v1779772577/Group_12_w1i6oo.png" alt="Artium Academy"/>
+      <div class="sep"></div>
+      <img src="https://res.cloudinary.com/dd7s6bb58/image/upload/v1779772861/originals_black_dgqkgl.png" alt="Artium Originals"/>
+    </div>
+    <span class="header-label">Release Information</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">✦ Artium Originals</div>
+  <h1>Your song<br/>deserves to<br/><em>exist.</em></h1>
+  <p>Fill in what you have. Nothing is required — you can always send us more details later. We'll take it from here.</p>
+</div>
+
+<!-- FORM -->
+<div class="form-wrap" id="formWrap">
+<form id="releaseForm" onsubmit="handleSubmit(event)">
+
+  <!-- 1. TRACK INFO -->
+  <div class="section-card" data-section="1">
+    <div class="section-head">
+      <div class="section-num">1</div>
+      <div>
+        <div class="section-title">Track Information</div>
+        <div class="section-sub">Basic details about the release</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="grid-2">
+        <div class="field">
+          <label>Song Title <span class="opt">optional</span></label>
+          <input type="text" name="song_title" placeholder="e.g. Suno Dayal"/>
+        </div>
+        <div class="field">
+          <label>Release Type <span class="opt">optional</span></label>
+          <select name="release_type">
+            <option value="">Select…</option>
+            <option>Teacher Series</option>
+            <option>Student Original</option>
+            <option>External Artist</option>
+            <option>Collaboration</option>
+            <option>Cover / Tribute</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Language <span class="opt">optional</span></label>
+          <select name="language">
+            <option value="">Select…</option>
+            <option>Hindi</option><option>Tamil</option><option>Telugu</option>
+            <option>Kannada</option><option>Marathi</option><option>Bengali</option>
+            <option>Gujarati</option><option>Malayalam</option><option>Punjabi</option>
+            <option>Sanskrit</option><option>Urdu</option><option>English</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Genre <span class="opt">optional</span></label>
+          <select name="genre">
+            <option value="">Select…</option>
+            <option>Hindustani Classical</option><option>Carnatic Classical</option>
+            <option>Folk</option><option>Fusion</option><option>Pop</option>
+            <option>Sufi</option><option>Devotional / Spiritual</option>
+            <option>Film / Filmi</option><option>Jazz</option>
+            <option>Western / Contemporary</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Sub-Genre <span class="opt">optional</span></label>
+          <input type="text" name="sub_genre" placeholder="e.g. Bhajan, Ghazal, Indie Pop"/>
+        </div>
+        <div class="field">
+          <label>Recording Year <span class="opt">optional</span></label>
+          <input type="number" name="recording_year" placeholder="2025" min="1900" max="2030"/>
+        </div>
+        <div class="field">
+          <label>Target Release Month <span class="opt">optional</span></label>
+          <select name="target_release_month">
+            <option value="">Select…</option>
+            <option>January</option><option>February</option><option>March</option>
+            <option>April</option><option>May</option><option>June</option>
+            <option>July</option><option>August</option><option>September</option>
+            <option>October</option><option>November</option><option>December</option>
+            <option>ASAP</option><option>Flexible</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Explicit Content <span class="opt">optional</span></label>
+          <select name="explicit">
+            <option value="">Select…</option><option>No</option><option>Yes</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Song Description <span class="opt">optional · 50–200 words</span></label>
+        <textarea name="song_description" placeholder="Describe the song — its mood, meaning, what inspired it…"></textarea>
+      </div>
+      <div class="field">
+        <label>Lyrics <span class="opt">optional</span></label>
+        <textarea name="lyrics" placeholder="Paste full lyrics here, or leave blank if instrumental" style="min-height:120px"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. PRIMARY ARTISTS -->
+  <div class="section-card" data-section="2">
+    <div class="section-head">
+      <div class="section-num">2</div>
+      <div>
+        <div class="section-title">Primary Artist(s)</div>
+        <div class="section-sub">Vocalist, Composer, Producer, Lyricist — one entry each</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div id="primaryArtists"></div>
+      <button type="button" class="add-btn" onclick="addArtist('primary')">+ Add Primary Artist</button>
+    </div>
+  </div>
+
+  <!-- 3. FEATURING ARTISTS -->
+  <div class="section-card" data-section="3">
+    <div class="section-head">
+      <div class="section-num">3</div>
+      <div>
+        <div class="section-title">Featuring Artist(s)</div>
+        <div class="section-sub">Optional — only if there's a ft. artist</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div id="featArtists"></div>
+      <button type="button" class="add-btn" onclick="addArtist('feat')">+ Add Featuring Artist</button>
+    </div>
+  </div>
+
+  <!-- 4. SONG CREDITS -->
+  <div class="section-card" data-section="4">
+    <div class="section-head">
+      <div class="section-num">4</div>
+      <div>
+        <div class="section-title">Song Credits</div>
+        <div class="section-sub">Every contributor — used for distribution and IPRS</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="grid-2">
+        <div class="field">
+          <label>Composer(s) <span class="opt">optional</span></label>
+          <input type="text" name="composers" placeholder="Full name(s), comma separated"/>
+        </div>
+        <div class="field">
+          <label>Lyricist(s) <span class="opt">optional</span></label>
+          <input type="text" name="lyricists" placeholder="Full name(s), comma separated"/>
+        </div>
+        <div class="field">
+          <label>Producer <span class="opt">optional</span></label>
+          <input type="text" name="producer" placeholder="Producer name"/>
+        </div>
+        <div class="field">
+          <label>Recording Studio + City <span class="opt">optional</span></label>
+          <input type="text" name="studio" placeholder="e.g. Artium Studios, Mumbai"/>
+        </div>
+        <div class="field">
+          <label>Mix Engineer <span class="opt">optional</span></label>
+          <input type="text" name="mix_engineer" placeholder="Name"/>
+        </div>
+        <div class="field">
+          <label>Mastering Engineer <span class="opt">optional</span></label>
+          <input type="text" name="mastering_engineer" placeholder="Name"/>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="repeat-label">Additional Credits</div>
+      <div id="additionalCredits"></div>
+      <button type="button" class="add-btn" onclick="addCredit()">+ Add Credit</button>
+    </div>
+  </div>
+
+  <!-- 5. MARKETING COPY -->
+  <div class="section-card" data-section="5">
+    <div class="section-head">
+      <div class="section-num">5</div>
+      <div>
+        <div class="section-title">Marketing Copy</div>
+        <div class="section-sub">For stores, social, and Spotify editorial pitching</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>One-Line Description <span class="opt">optional · max 15 words</span></label>
+        <input type="text" name="one_liner" placeholder="A single line that captures the song"/>
+      </div>
+      <div class="field">
+        <label>Short Description — for DSP Store Pages <span class="opt">optional</span></label>
+        <textarea name="desc_short" placeholder="1–2 sentences. What is this song and who is it for?" style="min-height:70px"></textarea>
+      </div>
+      <div class="field">
+        <label>Long Description / Press Note <span class="opt">optional</span></label>
+        <textarea name="desc_long" placeholder="Full press note, artist statement, or background story…"></textarea>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Tagline <span class="opt">optional</span></label>
+          <input type="text" name="tagline" placeholder="One punchy line"/>
+        </div>
+        <div class="field">
+          <label>Press Quote from Artist <span class="opt">optional</span></label>
+          <input type="text" name="press_quote" placeholder="Quote about the song in artist's words"/>
+        </div>
+      </div>
+      <div class="field">
+        <label>Spotify Pitch Text <span class="opt">optional · max 500 characters</span></label>
+        <textarea name="spotify_pitch" maxlength="500" placeholder="Describe the song for Spotify editorial — mood, genre, who it's for, why it deserves a playlist…" oninput="updateCount(this,'spotifyCount')"></textarea>
+        <div class="char-count" id="spotifyCount">0 / 500</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. PHOTOGRAPHY CREDIT -->
+  <div class="section-card" data-section="6">
+    <div class="section-head">
+      <div class="section-num">6</div>
+      <div>
+        <div class="section-title">Photography Credit</div>
+        <div class="section-sub">Credits for cover art and visual assets</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="grid-2">
+        <div class="field">
+          <label>Cover Art / Artwork Designer <span class="opt">optional</span></label>
+          <input type="text" name="art_designer" placeholder="Designer or studio name"/>
+        </div>
+        <div class="field">
+          <label>Photographer <span class="opt">optional</span></label>
+          <input type="text" name="photographer" placeholder="Photographer name"/>
+        </div>
+        <div class="field">
+          <label>Stylist <span class="opt">optional</span></label>
+          <input type="text" name="stylist" placeholder="Stylist name"/>
+        </div>
+        <div class="field">
+          <label>Location / Set Designer <span class="opt">optional</span></label>
+          <input type="text" name="set_designer" placeholder="If applicable"/>
+        </div>
+        <div class="field">
+          <label>Copyright Line on Artwork <span class="opt">optional</span></label>
+          <input type="text" name="art_copyright" placeholder="e.g. © 2025 Artium Academy Pvt. Ltd."/>
+        </div>
+        <div class="field">
+          <label>Any Other Visual Credits <span class="opt">optional</span></label>
+          <input type="text" name="other_visual_credits" placeholder="Anyone else involved"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. MUSIC VIDEO -->
+  <div class="section-card" data-section="7">
+    <div class="section-head">
+      <div class="section-num">7</div>
+      <div>
+        <div class="section-title">Music Video</div>
+        <div class="section-sub">Leave blank if there's no video</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>Is there a music video? <span class="opt">optional</span></label>
+        <select name="has_video">
+          <option value="">Select…</option>
+          <option>Yes</option><option>No</option>
+          <option>In production</option><option>Lyric video only</option>
+        </select>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Director <span class="opt">optional</span></label>
+          <input type="text" name="mv_director" placeholder="Director name"/>
+        </div>
+        <div class="field">
+          <label>DOP <span class="opt">optional</span></label>
+          <input type="text" name="mv_dop" placeholder="Director of Photography"/>
+        </div>
+        <div class="field">
+          <label>Editor <span class="opt">optional</span></label>
+          <input type="text" name="mv_editor" placeholder="Video editor name"/>
+        </div>
+        <div class="field">
+          <label>Compositing / VFX <span class="opt">optional</span></label>
+          <input type="text" name="mv_vfx" placeholder="VFX / compositing artist"/>
+        </div>
+        <div class="field">
+          <label>Shoot Location <span class="opt">optional</span></label>
+          <input type="text" name="mv_location" placeholder="City / venue"/>
+        </div>
+        <div class="field">
+          <label>Copyright Line on Video <span class="opt">optional</span></label>
+          <input type="text" name="mv_copyright" placeholder="e.g. © 2025 Artium Academy Pvt. Ltd."/>
+        </div>
+        <div class="field">
+          <label>YouTube Thumbnail Link <span class="opt">optional</span></label>
+          <input type="text" name="mv_thumbnail" placeholder="Google Drive link"/>
+        </div>
+        <div class="field">
+          <label>Spotify Canvas Link <span class="opt">optional · 9:16, max 8s</span></label>
+          <input type="text" name="mv_canvas" placeholder="Google Drive link"/>
+        </div>
+      </div>
+      <div class="field">
+        <label>Any Other Video Credits <span class="opt">optional</span></label>
+        <input type="text" name="mv_other_credits" placeholder="Anyone else involved in video production"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL NOTE -->
+  <div class="section-card" data-section="8">
+    <div class="section-head">
+      <div class="section-num">✦</div>
+      <div>
+        <div class="section-title">Anything else?</div>
+        <div class="section-sub">Deadlines, special instructions, sensitivities</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="field">
+        <label>Notes for the Artium Team <span class="opt">optional</span></label>
+        <textarea name="notes" placeholder="Any special instructions, deadlines, or anything else the team should know…" style="min-height:100px"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-zone">
+    <button type="submit" class="submit-btn" id="submitBtn">Submit Release Information</button>
+    <p class="submit-note">All fields are optional. You can always send us more details later.</p>
+  </div>
+
+</form>
+</div><!-- /form-wrap -->
+
+<!-- SUCCESS -->
+<div class="success-screen" id="successScreen">
+  <div class="success-ornament">✦</div>
+  <h2>Received.</h2>
+  <p>Your release information has reached the Artium Originals team.<br/>Abhijeet and the team will be in touch with next steps shortly.</p>
+  <button class="another-btn" onclick="resetForm()">Submit another release</button>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Artium Academy · Talent Department · Internal Use Only</p>
+</div>
+
+<script>
+// ── CONFIG ── Replace with your deployed Apps Script URL
+const SCRIPT_URL = ' https://script.google.com/macros/s/AKfycby1ioSyC9vdpyCcpVTP_lapEBNh--CRDg5OE152ty5_xnaHOsdtdK--5Pg6318F5znXpQ/exec';
+
+// ── COUNTERS ──
+let pCount = 0, fCount = 0, cCount = 0;
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  addArtist('primary');
+  addDefaultCredits();
+  initScrollReveal();
+  initProgress();
+});
+
+// ── SCROLL REVEAL ──
+function initScrollReveal() {
+  const cards = document.querySelectorAll('.section-card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.05 });
+  cards.forEach(c => observer.observe(c));
+}
+
+// ── PROGRESS ──
+function initProgress() {
+  const fill = document.getElementById('progressFill');
+  const inputs = () => document.querySelectorAll('input, select, textarea');
+  function update() {
+    const all = inputs();
+    const filled = [...all].filter(i => i.value && i.value.trim()).length;
+    const pct = Math.min(100, Math.round((filled / Math.max(all.length, 1)) * 100));
+    fill.style.width = pct + '%';
+  }
+  document.addEventListener('input', update);
+  document.addEventListener('change', update);
+}
+
+// ── CHAR COUNT ──
+function updateCount(el, id) {
+  const el2 = document.getElementById(id);
+  if (el2) el2.textContent = `${el.value.length} / ${el.maxLength}`;
+}
+
+// ── ARTISTS ──
+const ARTIST_ROLES = ['Vocalist','Composer','Lyricist','Producer','Composer & Producer','Vocalist & Composer','Multi-role','Other'];
+
+function addArtist(type) {
+  const container = document.getElementById(type === 'primary' ? 'primaryArtists' : 'featArtists');
+  const idx = type === 'primary' ? ++pCount : ++fCount;
+  const p = type === 'primary';
+  const pfx = p ? 'pa' : 'fa';
+  const block = document.createElement('div');
+  block.className = 'repeat-block';
+  block.id = `${pfx}_${idx}`;
+
+  const roleOpts = ARTIST_ROLES.map(r => `<option value="${r}">${r}</option>`).join('');
+
+  block.innerHTML = `
+    <button type="button" class="remove-btn" onclick="removeBlock('${pfx}_${idx}')">×</button>
+    <div class="repeat-label">${p ? 'Primary Artist' : 'Featuring Artist'} #${idx}</div>
+    <div class="grid-2">
+      <div class="field"><label>Artist Name / Stage Name</label><input type="text" name="${pfx}_name_${idx}" placeholder="Stage name"/></div>
+      ${p ? `<div class="field"><label>Role</label><select name="${pfx}_role_${idx}"><option value="">Select…</option>${roleOpts}</select></div>` : `<div class="field"><label>Role</label><input type="text" name="${pfx}_role_${idx}" placeholder="e.g. Vocalist, Rapper"/></div>`}
+      <div class="field"><label>Legal Full Name</label><input type="text" name="${pfx}_legal_${idx}" placeholder="Full legal name"/></div>
+      <div class="field"><label>Phone Number</label><input type="tel" name="${pfx}_phone_${idx}" placeholder="+91 XXXXX XXXXX"/></div>
+      <div class="field"><label>Email Address</label><input type="email" name="${pfx}_email_${idx}" placeholder="artist@email.com"/></div>
+      <div class="field"><label>Date of Birth</label><input type="date" name="${pfx}_dob_${idx}"/></div>
+      ${p ? `<div class="field"><label>Nationality</label><input type="text" name="${pfx}_nationality_${idx}" placeholder="e.g. Indian"/></div>
+      <div class="field"><label>IPRS Member?</label><select name="${pfx}_iprs_${idx}"><option value="">Select…</option><option>Yes</option><option>No</option><option>Applied</option></select></div>
+      <div class="field"><label>IPRS Number</label><input type="text" name="${pfx}_iprs_num_${idx}" placeholder="If applicable"/></div>` : ''}
+    </div>
+    <div class="grid-3">
+      <div class="field"><label>Instagram</label><input type="text" name="${pfx}_ig_${idx}" placeholder="@handle"/></div>
+      <div class="field"><label>YouTube</label><input type="text" name="${pfx}_yt_${idx}" placeholder="Channel URL"/></div>
+      <div class="field"><label>Spotify Profile</label><input type="text" name="${pfx}_sp_${idx}" placeholder="Spotify artist URL"/></div>
+    </div>
+    ${p ? `<div class="field"><label>Mailing Address</label><textarea name="${pfx}_address_${idx}" placeholder="Full mailing address" style="min-height:60px"></textarea></div>
+    <div class="field"><label>Artist Bio</label><textarea name="${pfx}_bio_${idx}" placeholder="100–200 words in third person" style="min-height:80px"></textarea></div>` : ''}
+  `;
+  container.appendChild(block);
+}
+
+// ── CREDITS ──
+const CREDIT_ROLES = ['Vocalist','Guitarist','Bassist','Drummer','Keyboardist','Violinist','Tabla','Flute','Sitar','Harmonium','Percussion','Arranger','Backing Vocals','Scratch Vocalist','Session Musician','Social Media & Content','Artwork / Design','Video Production Coordination','Vocal Practice Support','BTS Videographer','BTS Editor','Other'];
+
+function addCredit(name, role, notes) {
+  name = name || ''; role = role || ''; notes = notes || '';
+  const idx = ++cCount;
+  const container = document.getElementById('additionalCredits');
+  const block = document.createElement('div');
+  block.className = 'repeat-block';
+  block.id = `cr_${idx}`;
+  const opts = CREDIT_ROLES.map(r => `<option value="${r}"${r===role?' selected':''}>${r}</option>`).join('');
+  block.innerHTML = `
+    <button type="button" class="remove-btn" onclick="removeBlock('cr_${idx}')">×</button>
+    <div class="grid-3">
+      <div class="field"><label>Name</label><input type="text" name="cr_name_${idx}" placeholder="Full name" value="${name}"/></div>
+      <div class="field"><label>Role</label>
+        <select name="cr_role_${idx}" onchange="toggleOther(this,'cr_other_${idx}')">
+          <option value="">Select role…</option>${opts}
+        </select>
+        <input type="text" id="cr_other_${idx}" name="cr_role_other_${idx}" placeholder="Describe role…" style="display:${role==='Other'?'block':'none'};margin-top:8px;width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius);font-family:inherit;font-size:14px;outline:none;background:var(--cream)"/>
+      </div>
+      <div class="field"><label>Notes</label><input type="text" name="cr_notes_${idx}" placeholder="Any specific notes" value="${notes}"/></div>
+    </div>
+  `;
+  container.appendChild(block);
+}
+
+function toggleOther(sel, otherId) {
+  const el = document.getElementById(otherId);
+  if (el) el.style.display = sel.value === 'Other' ? 'block' : 'none';
+}
+
+function addDefaultCredits() {
+  const defaults = [
+    { name:'Jaimil Desai', role:'Artwork / Design', notes:'Cover art' },
+    { name:'Sohan Kotian', role:'Video Production Coordination', notes:'BTS & shoot' },
+    { name:'Paras, Aniket, Sanjana & Karan', role:'Social Media & Content', notes:'Pre & post release' },
+    { name:'', role:'Scratch Vocalist', notes:'Sang reference vocal on guide track' },
+    { name:'', role:'Vocal Practice Support', notes:'' },
+  ];
+  defaults.forEach(d => addCredit(d.name, d.role, d.notes));
+}
+
+function removeBlock(id) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+}
+
+// ── COLLECT DATA ──
+function collectData() {
+  const data = { submitted_at: new Date().toISOString() };
+  document.querySelectorAll('#releaseForm [name]').forEach(el => {
+    if (el.value && el.value.trim()) data[el.name] = el.value.trim();
+  });
+  return data;
+}
+
+// ── SUBMIT ──
+async function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  const data = collectData();
+
+  try {
+    if (SCRIPT_URL && SCRIPT_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+      const params = new URLSearchParams(data);
+      const iframe = document.createElement('iframe');
+      iframe.name = 'submit_frame';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      const f = document.createElement('form');
+      f.method = 'POST';
+      f.action = SCRIPT_URL;
+      f.target = 'submit_frame';
+      f.style.display = 'none';
+
+      for (const [k, v] of params.entries()) {
+        const i = document.createElement('input');
+        i.type = 'hidden'; i.name = k; i.value = v;
+        f.appendChild(i);
+      }
+      document.body.appendChild(f);
+      f.submit();
+      await new Promise(r => setTimeout(r, 1500));
+      document.body.removeChild(iframe);
+      document.body.removeChild(f);
+    }
+
+    document.getElementById('formWrap').style.display = 'none';
+    document.querySelector('.hero').style.display = 'none';
+    document.getElementById('successScreen').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch(err) {
+    alert('Submission failed. Please try again or contact the Artium team.');
+    btn.disabled = false;
+    btn.textContent = 'Submit Release Information';
+  }
+}
+
+function resetForm() {
+  document.getElementById('releaseForm').reset();
+  document.getElementById('primaryArtists').innerHTML = '';
+  document.getElementById('featArtists').innerHTML = '';
+  document.getElementById('additionalCredits').innerHTML = '';
+  pCount = fCount = cCount = 0;
+  addArtist('primary');
+  addDefaultCredits();
+  document.getElementById('formWrap').style.display = 'block';
+  document.querySelector('.hero').style.display = 'block';
+  document.getElementById('successScreen').classList.remove('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
