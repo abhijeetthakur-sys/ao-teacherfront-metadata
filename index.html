@@ -717,7 +717,7 @@ body {
 
 <script>
 // ── CONFIG ── Replace with your deployed Apps Script URL
-const SCRIPT_URL = ' https://script.google.com/macros/s/AKfycby1ioSyC9vdpyCcpVTP_lapEBNh--CRDg5OE152ty5_xnaHOsdtdK--5Pg6318F5znXpQ/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1ioSyC9vdpyCcpVTP_lapEBNh--CRDg5OE152ty5_xnaHOsdtdK--5Pg6318F5znXpQ/exec';
 
 // ── COUNTERS ──
 let pCount = 0, fCount = 0, cCount = 0;
@@ -865,7 +865,7 @@ async function handleSubmit(e) {
   const data = collectData();
 
   try {
-    if (SCRIPT_URL && SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwGtyl3bnoWzjd2hw-jfr1p0069vTAcplo51cgzr95RzqH51l4LmJiMCuZcAjtt1MDx/exec') {
+    if (SCRIPT_URL) {
       const params = new URLSearchParams(data);
       const iframe = document.createElement('iframe');
       iframe.name = 'submit_frame';
